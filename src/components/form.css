@@ -1,0 +1,20 @@
+form{
+    display: flex;
+    margin: 10px auto;
+    flex-direction: column;
+    width: 500px;
+    background-color: gainsboro;
+}
+
+form>div{
+    margin: 20px;
+}
+
+form>div>input, label{
+    width: 100%;
+}
+
+button{
+    margin: 20px;
+}
+
