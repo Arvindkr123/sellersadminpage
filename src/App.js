@@ -1,24 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import Todo from './components/Todo';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container border border-primary rounded mt-5'
+      style={{
+        background: `url(https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`,
+        backgroundSize: 'cover'
+      }}
+    >
+      <Todo />
     </div>
   );
 }
