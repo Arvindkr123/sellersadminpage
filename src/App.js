@@ -7,20 +7,32 @@ function App() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem('Products'));
-        if (storedData && storedData.length > 0) {
+        const storedData = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const item = localStorage.getItem(key);
+            if (item) {
+                storedData.push(JSON.parse(item));
+            }
+        }
+        if (storedData.length > 0) {
             setProducts(storedData);
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('Products', JSON.stringify(products));
+        localStorage.clear();
+        products.forEach((product) => {
+            localStorage.setItem(product.product_id, JSON.stringify(product));
+        });
     }, [products]);
 
     const saveData = (data) => {
-        setProducts(prevState => ([
-            ...prevState, data
-        ]));
+        setProducts(prevState => {
+            const newProducts = [...prevState, data];
+            localStorage.setItem(data.product_id, JSON.stringify(data));
+            return newProducts;
+        });
     };
 
     const totalPrice = products.reduce(
@@ -31,6 +43,7 @@ function App() {
     const deleteProduct = (id) => {
         const updatedData = products.filter((c) => c.product_id !== id);
         setProducts(updatedData);
+        localStorage.removeItem(id);
     };
 
     return (
