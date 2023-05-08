@@ -1,22 +1,18 @@
-import React from 'react'
+import React from "react";
 
-const ProductList = ({ data, onDeleteHandler}) => {
-    let total = 0;
+const ProductList = ({ products, totalPrice, onDeleteProduct }) => {
     return (
-        <div>
-            <ul>
-                <h3>Products</h3>
-                {data.map((curEle) => (
-                    <li key={curEle.product_id}>
-                        {curEle.product_id} - {curEle.selling_Price} -  {curEle.product_Name}
-                        <span>
-                            <button type='button' onClick={()=>onDeleteHandler(curEle.product_id)}>Delete Product</button>
-                        </span>
-                     <h2>Total value worth of the Product {total += Number(curEle.selling_Price)}</h2>
+        <ul>
+            {
+                products.map((item) => (
+                    <li key={item.product_id}>
+                        {item.product_id} - {item.product_Price} - {item.product_Name}
+                        <span><button type='button' onClick={() => onDeleteProduct(item.product_id)}>Delete Product</button></span>
                     </li>
-                ))}
-            </ul>
-        </div>
+                ))
+            }
+            {totalPrice > 0 && <h2>Total worth of the product {totalPrice}</h2>}
+        </ul>
     )
 }
 
